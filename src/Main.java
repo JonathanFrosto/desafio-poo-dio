@@ -7,34 +7,34 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        Curso curso1 = new Curso();
-        curso1.setTitulo("curso java");
-        curso1.setDescricao("descrição curso java");
-        curso1.setCargaHoraria(8);
+        Curso curso1 = Curso.builder()
+                .titulo("curso java")
+                .descricao("descrição curso java")
+                .cargaHoraria(8)
+                .build();
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("curso js");
-        curso2.setDescricao("descrição curso js");
-        curso2.setCargaHoraria(4);
+        Curso curso2 = Curso.builder()
+                .titulo("curso js")
+                .descricao("descrição curso js")
+                .cargaHoraria(4)
+                .build();
 
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("mentoria de java");
-        mentoria.setDescricao("descrição mentoria java");
-        mentoria.setData(LocalDate.now());
+        Mentoria mentoria = Mentoria.builder()
+                .titulo("mentoria de java")
+                .descricao("descrição mentoria java")
+                .data(LocalDate.now())
+                .build();
 
-        /*System.out.println(curso1);
-        System.out.println(curso2);
-        System.out.println(mentoria);*/
+        Bootcamp bootcamp = Bootcamp.builder()
+                .nome("Bootcamp Java Developer")
+                .descricao("Descrição Bootcamp Java Developer")
+                .build();
 
-        Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Descrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
+        bootcamp.adicionarConteudo(curso1);
+        bootcamp.adicionarConteudo(curso2);
+        bootcamp.adicionarConteudo(mentoria);
 
-        Dev devCamila = new Dev();
-        devCamila.setNome("Camila");
+        Dev devCamila = new Dev("Camila");
         devCamila.inscreverBootcamp(bootcamp);
         System.out.println("Conteúdos Inscritos Camila:" + devCamila.getConteudosInscritos());
         devCamila.progredir();
@@ -46,8 +46,7 @@ public class Main {
 
         System.out.println("-------");
 
-        Dev devJoao = new Dev();
-        devJoao.setNome("Joao");
+        Dev devJoao = new Dev("Joao");
         devJoao.inscreverBootcamp(bootcamp);
         System.out.println("Conteúdos Inscritos João:" + devJoao.getConteudosInscritos());
         devJoao.progredir();

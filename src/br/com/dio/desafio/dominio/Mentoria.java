@@ -4,30 +4,55 @@ import java.time.LocalDate;
 
 public class Mentoria extends Conteudo{
 
-    private LocalDate data;
+    private final LocalDate data;
+
+    public Mentoria(String titulo, String descricao, LocalDate data) {
+        super(titulo, descricao);
+        this.data = data;
+    }
 
     @Override
     public double calcularXp() {
         return XP_PADRAO + 20d;
     }
 
-    public Mentoria() {
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
     @Override
     public String toString() {
         return "Mentoria{" +
-                "titulo='" + getTitulo() + '\'' +
-                ", descricao='" + getDescricao() + '\'' +
+                "titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
                 ", data=" + data +
                 '}';
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private String titulo;
+        private String descricao;
+        private LocalDate data;
+
+        private Builder() {}
+
+        public Builder titulo(String titulo) {
+            this.titulo = titulo;
+            return this;
+        }
+
+        public Builder descricao(String descricao) {
+            this.descricao = descricao;
+            return this;
+        }
+
+        public Builder data(LocalDate data) {
+            this.data = data;
+            return this;
+        }
+
+        public Mentoria build() {
+            return new Mentoria(this.titulo, this.descricao, this.data);
+        }
     }
 }
